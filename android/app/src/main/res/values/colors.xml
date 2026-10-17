@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- night500 del design system. Debe coincidir con NidoAndroidSplash.nativeColor en Flutter. -->
+    <color name="nido_splash_bg">#4A35C4</color>
+</resources>

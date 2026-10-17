@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pre-splash para Android 11 o menor: fondo sólido y la casita en el centro. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/nido_splash_bg" />
+    <item
+        android:drawable="@drawable/ic_splash_house"
+        android:gravity="center" />
+</layer-list>

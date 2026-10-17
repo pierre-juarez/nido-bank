@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Casita de nido, en blanco, centrada en un lienzo de 288dp (el tamaño que Android 12 espera
+     para el icono del splash). La casita mide 52dp: la misma que dibuja Flutter al arrancar,
+     para que el relevo entre el splash nativo y el de Flutter no se note.
+     Escala 52/48 = 1.0833 y desplazamiento 144 - 24 * 1.0833 = 118. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="288dp"
+    android:height="288dp"
+    android:viewportWidth="288"
+    android:viewportHeight="288">
+    <group
+        android:translateX="118"
+        android:translateY="118"
+        android:scaleX="1.0833"
+        android:scaleY="1.0833">
+        <path
+            android:pathData="M6,22L24,7l18,15"
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="4"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round" />
+        <path
+            android:pathData="M12,20v18a2,2 0 0,0 2,2h20a2,2 0 0,0 2,-2V20"
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="4"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round" />
+        <path
+            android:pathData="M20,30a4,4 0 1,0 8,0a4,4 0 1,0 -8,0"
+            android:fillColor="#FFFFFF" />
+    </group>
+</vector>
