@@ -6,4 +6,6 @@ abstract final class AppRoutes {
   static const components = '/components';
   static const manage = '/manage';
   static const search = '/search';
+  static const searching = '/searching';
+  static const found = '/found';
 }

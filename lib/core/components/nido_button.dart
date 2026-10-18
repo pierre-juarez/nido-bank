@@ -22,6 +22,7 @@ class NidoButton extends StatelessWidget {
     this.expand = true,
     this.horizontalPadding = 34,
     this.backgroundColor,
+    this.showShadow = true,
   });
 
   final String label;
@@ -30,6 +31,7 @@ class NidoButton extends StatelessWidget {
   final double? height;
   final bool expand;
   final double horizontalPadding;
+  final bool showShadow;
 
   /// Sustituye el fondo de las variantes light y soft (por ejemplo white92 sobre gradient manage).
   final Color? backgroundColor;
@@ -49,18 +51,12 @@ class NidoButton extends StatelessWidget {
 
     final decoration = switch (variant) {
       NidoButtonVariant.primary => BoxDecoration(
-          gradient: AppGradients.cta,
-          borderRadius: radius,
-          boxShadow: AppShadows.cta,
-        ),
-      NidoButtonVariant.light => BoxDecoration(
-          color: backgroundColor ?? AppColors.white,
-          borderRadius: radius,
-        ),
-      NidoButtonVariant.soft => BoxDecoration(
-          color: backgroundColor ?? AppColors.surfaceSoftButton,
-          borderRadius: radius,
-        ),
+        gradient: AppGradients.cta,
+        borderRadius: radius,
+        boxShadow: showShadow ? AppShadows.cta : null,
+      ),
+      NidoButtonVariant.light => BoxDecoration(color: backgroundColor ?? AppColors.white, borderRadius: radius),
+      NidoButtonVariant.soft => BoxDecoration(color: backgroundColor ?? AppColors.surfaceSoftButton, borderRadius: radius),
     };
 
     return SizedBox(

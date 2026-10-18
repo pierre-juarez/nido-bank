@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nido_bank/core/components/components.dart';
+import 'package:nido_bank/core/router/app_routes.dart';
 import 'package:nido_bank/core/theme/app_theme.dart';
 
 class SearchScreen extends StatelessWidget {
@@ -73,7 +74,11 @@ class SearchScreen extends StatelessWidget {
                   subtitle: 'Revisamos tu solicitud por ti',
                 ),
                 Spacer(),
-                NidoButton(label: 'Buscar mi hipoteca', variant: NidoButtonVariant.primary, onPressed: () {}),
+                NidoButton(
+                  label: 'Buscar mi hipoteca',
+                  variant: NidoButtonVariant.primary,
+                  onPressed: () => context.go(AppRoutes.searching),
+                ),
               ],
             ),
           ),

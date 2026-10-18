@@ -1,10 +1,12 @@
 import 'package:go_router/go_router.dart';
 import 'package:nido_bank/core/router/app_routes.dart';
+import 'package:nido_bank/features/found/presentation/screens/found_screen.dart';
 import 'package:nido_bank/features/gallery/presentation/screens/components_gallery.dart';
 import 'package:nido_bank/features/home/presentation/screens/home_screen.dart';
 import 'package:nido_bank/features/manage/presentation/screens/manage_screens.dart';
 import 'package:nido_bank/features/onboarding/presentation/screens/onboarding_screen.dart';
-import 'package:nido_bank/features/search/presentation/screens/search_screens.dart';
+import 'package:nido_bank/features/search/presentation/screens/search_screen.dart';
+import 'package:nido_bank/features/shared/searching_screen.dart';
 import 'package:nido_bank/features/shell/presentation/screens/main_shell.dart';
 import 'package:nido_bank/features/splash/presentation/screens/android_splash_screen.dart';
 
@@ -35,5 +37,10 @@ final appRouter = GoRouter(
       ],
     ),
     GoRoute(path: AppRoutes.components, builder: (context, state) => const ComponentsGallery()),
+    GoRoute(
+      path: AppRoutes.searching,
+      builder: (context, state) => SearchingScreen(onFinished: () => context.go(AppRoutes.found)),
+    ),
+    GoRoute(path: AppRoutes.found, builder: (context, state) => const FoundScreen()),
   ],
 );

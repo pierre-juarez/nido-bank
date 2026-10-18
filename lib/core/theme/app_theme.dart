@@ -69,6 +69,8 @@ abstract final class AppColors {
 }
 
 abstract final class AppSpacing {
+  static const s2 = 2.0;
+  static const s4 = 4.0;
   static const s8 = 8.0;
   static const s10 = 10.0;
   static const s12 = 12.0;
@@ -92,6 +94,7 @@ abstract final class AppRadius {
   static const sheetTop = BorderRadius.vertical(top: Radius.circular(36));
   static const bottomBarTop = BorderRadius.vertical(top: Radius.circular(28));
   static const pill = StadiumBorder();
+
   /// Panel superior del onboarding: radio inferior 44.
   static const onboardingHeroBottom = BorderRadius.vertical(bottom: Radius.circular(44));
 }
@@ -126,9 +129,7 @@ abstract final class AppShadows {
   static const bottomBar = [
     BoxShadow(color: Color.fromRGBO(26, 18, 96, 0.3), offset: Offset(0, -12), blurRadius: 30, spreadRadius: -14),
   ];
-  static const thumb = [
-    BoxShadow(color: Color.fromRGBO(40, 25, 140, 0.35), offset: Offset(0, 2), blurRadius: 8),
-  ];
+  static const thumb = [BoxShadow(color: Color.fromRGBO(40, 25, 140, 0.35), offset: Offset(0, 2), blurRadius: 8)];
 }
 
 /// Ángulos CSS convertidos a Alignment: 150deg → (-0.5,-0.866) a (0.5,0.866);
@@ -149,9 +150,7 @@ abstract final class AppGradients {
     end: Alignment(0.5, 0.866),
     colors: [AppColors.primary300, AppColors.primary600],
   );
-  static const slider = LinearGradient(
-    colors: [AppColors.primary600, AppColors.primary300],
-  );
+  static const slider = LinearGradient(colors: [AppColors.primary600, AppColors.primary300]);
   static const manage = LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
@@ -164,6 +163,7 @@ abstract final class AppGradients {
     colors: [AppColors.night300, AppColors.night500, AppColors.night700, AppColors.night900],
     stops: [0, 0.34, 0.62, 1],
   );
+
   /// Panel superior del onboarding: 3 paradas, hasta night700.
   static const onboarding = LinearGradient(
     begin: Alignment.topCenter,
@@ -208,13 +208,7 @@ abstract final class AppGradients {
 /// interlineado sin unidad, igual que en CSS.
 abstract final class AppTextStyles {
   static TextStyle _t(double size, FontWeight weight, {double height = 1.2, double em = 0, Color? color}) =>
-      GoogleFonts.manrope(
-        fontSize: size,
-        fontWeight: weight,
-        height: height,
-        letterSpacing: em * size,
-        color: color,
-      );
+      GoogleFonts.manrope(fontSize: size, fontWeight: weight, height: height, letterSpacing: em * size, color: color);
 
   // Títulos
   static final screenTitle = _t(40, FontWeight.w800, height: 1.02, em: -0.04, color: AppColors.ink900);
@@ -262,21 +256,21 @@ abstract final class AppTextStyles {
 
 abstract final class AppTheme {
   static ThemeData get light => ThemeData(
-        useMaterial3: true,
-        scaffoldBackgroundColor: AppColors.white,
-        colorScheme: const ColorScheme.light(
-          primary: AppColors.primary600,
-          onPrimary: AppColors.white,
-          surface: AppColors.white,
-          onSurface: AppColors.ink900,
-        ),
-        textTheme: GoogleFonts.manropeTextTheme(),
-        sliderTheme: const SliderThemeData(
-          trackHeight: AppSize.sliderTrack,
-          activeTrackColor: AppColors.primary600,
-          inactiveTrackColor: AppColors.track,
-          thumbColor: AppColors.white,
-          overlayShape: RoundSliderOverlayShape(overlayRadius: 0),
-        ),
-      );
+    useMaterial3: true,
+    scaffoldBackgroundColor: AppColors.white,
+    colorScheme: const ColorScheme.light(
+      primary: AppColors.primary600,
+      onPrimary: AppColors.white,
+      surface: AppColors.white,
+      onSurface: AppColors.ink900,
+    ),
+    textTheme: GoogleFonts.manropeTextTheme(),
+    sliderTheme: const SliderThemeData(
+      trackHeight: AppSize.sliderTrack,
+      activeTrackColor: AppColors.primary600,
+      inactiveTrackColor: AppColors.track,
+      thumbColor: AppColors.white,
+      overlayShape: RoundSliderOverlayShape(overlayRadius: 0),
+    ),
+  );
 }
