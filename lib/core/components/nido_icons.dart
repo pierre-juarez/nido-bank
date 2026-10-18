@@ -12,10 +12,8 @@ abstract final class NidoIcons {
   static const arrowRight = '<path d="M5 12h14M13 6l6 6-6 6"/>';
   static const arrowLeft = '<path d="M19 12H5M11 6l-6 6 6 6"/>';
   static const close = '<path d="M6 6l12 12M18 6L6 18"/>';
-  static const document =
-      '<path d="M7 3h7l5 5v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M9 13h6M9 17h4"/>';
-  static const calendar =
-      '<rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M8 3v4M16 3v4M3.5 10h17"/>';
+  static const document = '<path d="M7 3h7l5 5v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M9 13h6M9 17h4"/>';
+  static const calendar = '<rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M8 3v4M16 3v4M3.5 10h17"/>';
   static const wallet = '<path d="M4 8a2 2 0 0 1 2-2h11v4"/><rect x="4" y="8" width="16" height="11" rx="3"/>';
   static const coin = '<circle cx="12" cy="12" r="8.5"/><path d="M9 12h6M12 9v6"/>';
   static const shield = '<path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/>';
@@ -26,13 +24,7 @@ abstract final class NidoIcons {
 /// Medidas del diseño: 20 dentro de cuadros de icono y barra de navegación,
 /// 18 en botones circulares, 12 con trazo de 3 en el chip "Eliminar".
 class NidoIcon extends StatelessWidget {
-  const NidoIcon(
-    this.body, {
-    super.key,
-    this.size = 20,
-    this.color = Colors.white,
-    this.strokeWidth = 2,
-  });
+  const NidoIcon(this.body, {super.key, this.size = 20, this.color = Colors.white, this.strokeWidth = 2});
 
   final String body;
   final double size;
@@ -41,13 +33,9 @@ class NidoIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" '
+    final svg =
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" '
         'stroke="#000000" stroke-width="$strokeWidth" stroke-linecap="round" stroke-linejoin="round">$body</svg>';
-    return SvgPicture.string(
-      svg,
-      width: size,
-      height: size,
-      colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
-    );
+    return SvgPicture.string(svg, width: size, height: size, colorFilter: ColorFilter.mode(color, BlendMode.srcIn));
   }
 }

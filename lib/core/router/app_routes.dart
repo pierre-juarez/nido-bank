@@ -3,4 +3,7 @@ abstract final class AppRoutes {
   static const splash = '/splash';
   static const onboarding = '/onboarding';
   static const home = '/home';
+  static const components = '/components';
+  static const manage = '/manage';
+  static const search = '/search';
 }

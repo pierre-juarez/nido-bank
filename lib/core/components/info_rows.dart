@@ -13,12 +13,16 @@ class NidoIconTile extends StatelessWidget {
     required this.iconColor,
     required this.background,
     this.size = AppSize.iconTile,
+    this.iconSize = 20,
   });
 
   final String icon;
   final Color iconColor;
   final Color background;
   final double size;
+
+  /// Tamaño del icono dentro del cuadro: 20 en filas y mosaicos, 22 en los mosaicos de Gestionar.
+  final double iconSize;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +31,7 @@ class NidoIconTile extends StatelessWidget {
       height: size,
       alignment: Alignment.center,
       decoration: BoxDecoration(color: background, borderRadius: AppRadius.r12),
-      child: NidoIcon(icon, size: 20, color: iconColor),
+      child: NidoIcon(icon, size: iconSize, color: iconColor),
     );
   }
 }
@@ -66,10 +70,7 @@ class NidoInfoRow extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(title, style: AppTextStyles.rowTitle),
-                if (subtitle != null) ...[
-                  const SizedBox(height: 1),
-                  Text(subtitle!, style: AppTextStyles.caption),
-                ],
+                if (subtitle != null) ...[const SizedBox(height: 1), Text(subtitle!, style: AppTextStyles.caption)],
               ],
             ),
           ),
@@ -83,13 +84,7 @@ class NidoInfoRow extends StatelessWidget {
 /// Medidas: fondo surfaceTint50, radio 22, padding 14, cuadro de icono de 38,
 /// separación 12 hasta el título 14/800 (interlineado 1.2).
 class NidoInfoTile extends StatelessWidget {
-  const NidoInfoTile({
-    super.key,
-    required this.icon,
-    required this.iconColor,
-    required this.iconBackground,
-    required this.title,
-  });
+  const NidoInfoTile({super.key, required this.icon, required this.iconColor, required this.iconBackground, required this.title});
 
   final String icon;
   final Color iconColor;
