@@ -37,9 +37,9 @@ class _ComponentsGalleryState extends State<ComponentsGallery> {
               NidoButton(
                 label: 'Splash Android',
                 variant: NidoButtonVariant.soft,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(
-                  builder: (ctx) => NidoAndroidSplashScreen(onFinished: () => Navigator.of(ctx).pop()),
-                )),
+                onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute<void>(builder: (ctx) => NidoAndroidSplashScreen(onFinished: () => Navigator.of(ctx).pop())),
+                ),
               ),
             ),
             _Section(
@@ -50,9 +50,9 @@ class _ComponentsGalleryState extends State<ComponentsGallery> {
                     child: NidoButton(
                       label: 'Splash',
                       variant: NidoButtonVariant.soft,
-                      onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(
-                        builder: (ctx) => NidoSplashScreen(onFinished: () => Navigator.of(ctx).pop()),
-                      )),
+                      onPressed: () => Navigator.of(context).push(
+                        MaterialPageRoute<void>(builder: (ctx) => NidoSplashScreen(onFinished: () => Navigator.of(ctx).pop())),
+                      ),
                     ),
                   ),
                   const SizedBox(width: 12),
@@ -60,9 +60,11 @@ class _ComponentsGalleryState extends State<ComponentsGallery> {
                     child: NidoButton(
                       label: 'Onboarding',
                       variant: NidoButtonVariant.soft,
-                      onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(
-                        builder: (ctx) => NidoOnboardingScreen(onFinished: () => Navigator.of(ctx).pop()),
-                      )),
+                      onPressed: () => Navigator.of(context).push(
+                        MaterialPageRoute<void>(
+                          builder: (ctx) => NidoOnboardingScreen(onFinished: () => Navigator.of(ctx).pop()),
+                        ),
+                      ),
                     ),
                   ),
                 ],
@@ -82,18 +84,10 @@ class _ComponentsGalleryState extends State<ComponentsGallery> {
                 ),
               ),
             ),
-            _Section(
-              'Botón principal (56)',
-              NidoButton(label: 'Buscar mi hipoteca', onPressed: () {}),
-            ),
+            _Section('Botón principal (56)', NidoButton(label: 'Buscar mi hipoteca', onPressed: () {})),
             _Section(
               'Botón suave (48)',
-              NidoButton(
-                label: 'Ver progreso en el tiempo',
-                variant: NidoButtonVariant.soft,
-                height: 48,
-                onPressed: () {},
-              ),
+              NidoButton(label: 'Ver progreso en el tiempo', variant: NidoButtonVariant.soft, height: 48, onPressed: () {}),
             ),
             _Section(
               'Botón claro (50) y chip (30) sobre fondo oscuro',
@@ -112,11 +106,7 @@ class _ComponentsGalleryState extends State<ComponentsGallery> {
               'Barra de navegación (288 × 64)',
               _Dark(
                 Center(
-                  child: NidoTabBar(
-                    items: _tabs,
-                    currentIndex: _tab,
-                    onTap: (i) => setState(() => _tab = i),
-                  ),
+                  child: NidoTabBar(items: _tabs, currentIndex: _tab, onTap: (i) => setState(() => _tab = i)),
                 ),
               ),
             ),
@@ -202,10 +192,7 @@ class _ComponentsGalleryState extends State<ComponentsGallery> {
                 ],
               ),
             ),
-            _Section(
-              'Control "Tu parte"',
-              NidoShareSlider(percent: _percent, onChanged: (v) => setState(() => _percent = v)),
-            ),
+            _Section('Control "Tu parte"', NidoShareSlider(percent: _percent, onChanged: (v) => setState(() => _percent = v))),
           ],
         ),
       ),

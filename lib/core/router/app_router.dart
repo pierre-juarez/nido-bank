@@ -1,15 +1,11 @@
 import 'package:go_router/go_router.dart';
 import 'package:nido_bank/core/router/app_routes.dart';
-import 'package:nido_bank/features/found/presentation/screens/found_screen.dart';
-import 'package:nido_bank/features/gallery/presentation/screens/components_gallery.dart';
-import 'package:nido_bank/features/home/presentation/screens/home_screen.dart';
-import 'package:nido_bank/features/manage/presentation/screens/manage_screens.dart';
+import 'package:nido_bank/features/screens/screens.dart';
+import 'package:nido_bank/features/shared/components_gallery.dart';
 import 'package:nido_bank/features/onboarding/presentation/screens/onboarding_screen.dart';
-import 'package:nido_bank/features/search/presentation/screens/search_screen.dart';
 import 'package:nido_bank/features/shared/searching_screen.dart';
 import 'package:nido_bank/features/shell/presentation/screens/main_shell.dart';
 import 'package:nido_bank/features/splash/presentation/screens/android_splash_screen.dart';
-import 'package:nido_bank/features/under_review/presentation/screens/under_review_screen.dart';
 
 /// Flujo de arranque: splash nativo → splash de Flutter → onboarding → galería.
 final appRouter = GoRouter(
@@ -44,5 +40,7 @@ final appRouter = GoRouter(
     ),
     GoRoute(path: AppRoutes.found, builder: (context, state) => const FoundScreen()),
     GoRoute(path: AppRoutes.underReview, builder: (context, state) => const UnderReviewScreen()),
+    GoRoute(path: AppRoutes.result, builder: (context, state) => const ResultScreen()),
+    GoRoute(path: AppRoutes.offers, builder: (context, state) => OfertsScreen()),
   ],
 );

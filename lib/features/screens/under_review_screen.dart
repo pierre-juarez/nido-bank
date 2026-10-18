@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:nido_bank/core/components/info_rows.dart';
 import 'package:nido_bank/core/components/nido_button.dart';
 import 'package:nido_bank/core/components/nido_icons.dart';
 import 'package:nido_bank/core/components/nido_illustrations.dart';
 import 'package:nido_bank/core/components/nido_motion.dart';
+import 'package:nido_bank/core/router/app_routes.dart';
 import 'package:nido_bank/core/theme/app_theme.dart';
 
 class UnderReviewScreen extends StatelessWidget {
@@ -70,7 +72,7 @@ class UnderReviewScreen extends StatelessWidget {
                 ],
               ),
               const Spacer(),
-              NidoButton(label: 'Entendido', onPressed: () {}),
+              NidoButton(label: 'Entendido', onPressed: () => context.go(AppRoutes.result)),
             ],
           ),
         ),

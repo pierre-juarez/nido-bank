@@ -41,23 +41,7 @@ class _FoundScreenState extends State<FoundScreen> {
                 child: Column(
                   spacing: AppSpacing.s12,
                   children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Material(
-                        color: AppColors.surfaceChip,
-                        shape: const CircleBorder(),
-                        child: InkWell(
-                          onTap: () => context.pop(),
-                          customBorder: const CircleBorder(),
-                          child: const SizedBox(
-                            width: 40,
-                            height: 40,
-                            child: Center(child: NidoIcon(NidoIcons.close, size: 16, strokeWidth: 2.5, color: AppColors.ink900)),
-                          ),
-                        ),
-                      ),
-                    ),
-
+                    SizedBox(height: AppSpacing.s24),
                     Text('Encontramos\ntu hipoteca 👀', textAlign: TextAlign.center, style: AppTextStyles.screenTitle),
                     SizedBox(height: AppSpacing.s2),
                     Padding(
