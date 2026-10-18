@@ -9,8 +9,15 @@ import 'package:nido_bank/core/components/nido_motion.dart';
 import 'package:nido_bank/core/router/app_routes.dart';
 import 'package:nido_bank/core/theme/app_theme.dart';
 
-class UnderReviewScreen extends StatelessWidget {
+class UnderReviewScreen extends StatefulWidget {
   const UnderReviewScreen({super.key});
+
+  @override
+  State<UnderReviewScreen> createState() => _UnderReviewScreenState();
+}
+
+class _UnderReviewScreenState extends State<UnderReviewScreen> {
+  bool _arrived = false;
 
   @override
   Widget build(BuildContext context) {
@@ -25,21 +32,46 @@ class UnderReviewScreen extends StatelessWidget {
               SizedBox(
                 height: 104,
                 child: Center(
-                  child: NidoFloat(
-                    duration: const Duration(milliseconds: 3600),
-                    child: const NidoIllustration(NidoIllustrations.paperPlane, width: 230, height: 104),
+                  child: NidoFlyIn(
+                    onArrived: () {
+                      if (mounted) setState(() => _arrived = true);
+                    },
+                    child: _arrived
+                        ? const NidoFloat(
+                            duration: Duration(milliseconds: 3600),
+                            child: NidoIllustration(
+                              NidoIllustrations.paperPlane,
+                              width: 230,
+                              height: 104,
+                            ),
+                          )
+                        : const NidoIllustration(
+                            NidoIllustrations.paperPlane,
+                            width: 230,
+                            height: 104,
+                          ),
                   ),
                 ),
               ),
               const SizedBox(height: 14),
-              Text('Lo revisaremos en las próximas 48 horas', textAlign: TextAlign.center, style: AppTextStyles.sectionTitle),
-              const SizedBox(height: 14),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
+              NidoEntrance(
+                delay: const Duration(milliseconds: 700),
                 child: Text(
-                  'No se trata solo de tu historial crediticio. Normalmente, los prestamistas evalúan estos cuatro factores al decidir sobre tu solicitud.',
+                  'Lo revisaremos en las próximas 48 horas',
                   textAlign: TextAlign.center,
-                  style: AppTextStyles.bodySm,
+                  style: AppTextStyles.sectionTitle,
+                ),
+              ),
+              const SizedBox(height: 14),
+              NidoEntrance(
+                delay: const Duration(milliseconds: 850),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Text(
+                    'No se trata solo de tu historial crediticio. Normalmente, los prestamistas evalúan estos cuatro factores al decidir sobre tu solicitud.',
+                    textAlign: TextAlign.center,
+                    style: AppTextStyles.bodySm,
+                  ),
                 ),
               ),
               const SizedBox(height: 20),
@@ -72,7 +104,10 @@ class UnderReviewScreen extends StatelessWidget {
                 ],
               ),
               const Spacer(),
-              NidoButton(label: 'Entendido', onPressed: () => context.go(AppRoutes.result)),
+              NidoButton(
+                label: 'Entendido',
+                onPressed: () => context.go(AppRoutes.result),
+              ),
             ],
           ),
         ),

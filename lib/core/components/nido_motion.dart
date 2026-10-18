@@ -24,7 +24,8 @@ class NidoEntrance extends StatefulWidget {
   State<NidoEntrance> createState() => _NidoEntranceState();
 }
 
-class _NidoEntranceState extends State<NidoEntrance> with SingleTickerProviderStateMixin {
+class _NidoEntranceState extends State<NidoEntrance>
+    with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _curve;
 
@@ -58,7 +59,10 @@ class _NidoEntranceState extends State<NidoEntrance> with SingleTickerProviderSt
           opacity: t.clamp(0.0, 1.0),
           child: Transform.translate(
             offset: Offset(0, widget.offsetY * (1 - t)),
-            child: Transform.scale(scale: widget.beginScale + (1 - widget.beginScale) * t, child: child),
+            child: Transform.scale(
+              scale: widget.beginScale + (1 - widget.beginScale) * t,
+              child: child,
+            ),
           ),
         );
       },
@@ -85,10 +89,16 @@ class NidoFloat extends StatefulWidget {
   State<NidoFloat> createState() => _NidoFloatState();
 }
 
-class _NidoFloatState extends State<NidoFloat> with SingleTickerProviderStateMixin {
-  late final AnimationController _controller =
-      AnimationController(vsync: this, duration: widget.duration)..repeat(reverse: true);
-  late final Animation<double> _curve = CurvedAnimation(parent: _controller, curve: Curves.easeInOut);
+class _NidoFloatState extends State<NidoFloat>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller = AnimationController(
+    vsync: this,
+    duration: widget.duration,
+  )..repeat(reverse: true);
+  late final Animation<double> _curve = CurvedAnimation(
+    parent: _controller,
+    curve: Curves.easeInOut,
+  );
 
   @override
   void dispose() {
@@ -101,8 +111,85 @@ class _NidoFloatState extends State<NidoFloat> with SingleTickerProviderStateMix
     return AnimatedBuilder(
       animation: _curve,
       child: widget.child,
-      builder: (context, child) =>
-          Transform.translate(offset: Offset(0, -widget.amplitude * _curve.value), child: child),
+      builder: (context, child) => Transform.translate(
+        offset: Offset(0, -widget.amplitude * _curve.value),
+        child: child,
+      ),
+    );
+  }
+}
+
+/// Llegada "volando": el hijo entra desde fuera de la pantalla por la izquierda,
+/// subiendo en arco y enderezándose hasta quedar en su sitio.
+class NidoFlyIn extends StatefulWidget {
+  const NidoFlyIn({
+    super.key,
+    required this.child,
+    this.delay = Duration.zero,
+    this.duration = const Duration(milliseconds: 1500),
+    this.startTilt = -0.4,
+    this.onArrived,
+  });
+
+  final Widget child;
+  final Duration delay;
+  final Duration duration;
+
+  /// Inclinación inicial en radianes (negativa = morro hacia arriba).
+  final double startTilt;
+  final VoidCallback? onArrived;
+
+  @override
+  State<NidoFlyIn> createState() => _NidoFlyInState();
+}
+
+class _NidoFlyInState extends State<NidoFlyIn>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller = AnimationController(
+    vsync: this,
+    duration: widget.duration,
+  );
+  late final Animation<double> _curve = CurvedAnimation(
+    parent: _controller,
+    curve: Curves.easeOutCubic,
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(widget.delay, () {
+      if (!mounted) return;
+      _controller.forward().whenComplete(() => widget.onArrived?.call());
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final width = MediaQuery.sizeOf(context).width;
+    return AnimatedBuilder(
+      animation: _curve,
+      child: widget.child,
+      builder: (context, child) {
+        final t = _curve.value;
+        final remaining = 1 - t;
+        return Opacity(
+          opacity: (t * 4).clamp(0.0, 1.0),
+          child: Transform.translate(
+            // Entra desde la izquierda y baja en arco hasta su posición.
+            offset: Offset(-width * remaining, 90 * remaining * remaining),
+            child: Transform.rotate(
+              angle: widget.startTilt * remaining,
+              child: child,
+            ),
+          ),
+        );
+      },
     );
   }
 }
