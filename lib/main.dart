@@ -1,8 +1,17 @@
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:nido_bank/core/router/app_router.dart';
 import 'package:nido_bank/core/theme/app_theme.dart';
 
-void main() => runApp(const NidoApp());
+void main() {
+  runApp(
+    DevicePreview(
+      enabled: kIsWeb,
+      builder: (context) => const NidoApp(),
+    ),
+  );
+}
 
 class NidoApp extends StatelessWidget {
   const NidoApp({super.key});
@@ -13,6 +22,8 @@ class NidoApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'nido',
       theme: AppTheme.light,
+      locale: DevicePreview.locale(context),
+      builder: DevicePreview.appBuilder,
       routerConfig: appRouter,
     );
   }
