@@ -8,4 +8,5 @@ abstract final class AppRoutes {
   static const search = '/search';
   static const searching = '/searching';
   static const found = '/found';
+  static const underReview = '/under-review';
 }

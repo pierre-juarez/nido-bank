@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nido_bank/core/components/components.dart';
 import 'package:nido_bank/core/components/nido_bottom_bar.dart';
+import 'package:nido_bank/core/router/app_routes.dart';
 import 'package:nido_bank/core/theme/app_theme.dart';
 
 class FoundScreen extends StatefulWidget {
@@ -94,7 +95,7 @@ class _FoundScreenState extends State<FoundScreen> {
                 left: 0,
                 right: 0,
                 bottom: 0,
-                child: NidoBottomBar(total: _total, onPressed: () {}),
+                child: NidoBottomBar(total: _total, onPressed: () => context.go(AppRoutes.underReview)),
               ),
             ],
           ),

@@ -9,6 +9,7 @@ import 'package:nido_bank/features/search/presentation/screens/search_screen.dar
 import 'package:nido_bank/features/shared/searching_screen.dart';
 import 'package:nido_bank/features/shell/presentation/screens/main_shell.dart';
 import 'package:nido_bank/features/splash/presentation/screens/android_splash_screen.dart';
+import 'package:nido_bank/features/under_review/presentation/screens/under_review_screen.dart';
 
 /// Flujo de arranque: splash nativo → splash de Flutter → onboarding → galería.
 final appRouter = GoRouter(
@@ -42,5 +43,6 @@ final appRouter = GoRouter(
       builder: (context, state) => SearchingScreen(onFinished: () => context.go(AppRoutes.found)),
     ),
     GoRoute(path: AppRoutes.found, builder: (context, state) => const FoundScreen()),
+    GoRoute(path: AppRoutes.underReview, builder: (context, state) => const UnderReviewScreen()),
   ],
 );

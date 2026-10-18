@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:nido_bank/core/components/nido_button.dart';
 import 'package:nido_bank/core/components/nido_search_loder.dart';
 import 'package:nido_bank/core/theme/app_theme.dart';
@@ -53,38 +54,41 @@ class _SearchingScreenState extends State<SearchingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.white,
-      body: Stack(
-        children: [
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const NidoSearchLoader(),
-                  const SizedBox(height: 26),
-                  Text(widget.title, textAlign: TextAlign.center, style: AppTextStyles.stateTitle),
-                  const SizedBox(height: 8),
-                  Text(widget.subtitle, textAlign: TextAlign.center, style: AppTextStyles.body.copyWith(height: 1.45)),
-                ],
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.dark,
+      child: Scaffold(
+        backgroundColor: AppColors.white,
+        body: Stack(
+          children: [
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const NidoSearchLoader(),
+                    const SizedBox(height: 26),
+                    Text(widget.title, textAlign: TextAlign.center, style: AppTextStyles.stateTitle),
+                    const SizedBox(height: 8),
+                    Text(widget.subtitle, textAlign: TextAlign.center, style: AppTextStyles.body.copyWith(height: 1.45)),
+                  ],
+                ),
               ),
             ),
-          ),
-          Positioned(
-            top: 64,
-            right: 20,
-            child: NidoChip(
-              label: 'Saltar',
-              height: 36,
-              horizontalPadding: 16,
-              background: AppColors.surfaceChip,
-              foreground: AppColors.ink900,
-              onPressed: _finish,
+            Positioned(
+              top: 64,
+              right: 20,
+              child: NidoChip(
+                label: 'Saltar',
+                height: 36,
+                horizontalPadding: 16,
+                background: AppColors.surfaceChip,
+                foreground: AppColors.ink900,
+                onPressed: _finish,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
